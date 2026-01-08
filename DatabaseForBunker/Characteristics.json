@@ -1,0 +1,21 @@
+{
+  "Threat": [],
+  "Profession": [
+    {
+      "ID": 51,
+      "Name": "jhgf",
+      "Description": "kjhg",
+      "ModelPath": "",
+      "DeckTypeId": "1",
+      "isLocal": "1"
+    }
+  ],
+  "Fact": [],
+  "Age": [],
+  "Disaster": [],
+  "Hobby": [],
+  "Phobia": [],
+  "Health": [],
+  "Bunker": [],
+  "Luggage": []
+}
