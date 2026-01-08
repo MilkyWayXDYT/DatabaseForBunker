@@ -5,6 +5,8 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using UnityEditor;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SharingData : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class SharingData : MonoBehaviour
 
     public void ExportData(string jsonPath = "C:\\Users\\User\\Desktop\\Characteristics.json")
     {
-        //jsonPath += "\\Characteristics.json";
+        jsonPath = EditorUtility.SaveFilePanel("Выберите папку для экспорта", "", "Characteristics", "json");
         var exportData = new JsonStruct();
         using (var connection = DBHelper.GetConnection())
         {
@@ -54,6 +56,8 @@ public class SharingData : MonoBehaviour
 
     public void ImportData(string jsonPath = "C:\\Users\\User\\Desktop\\Characteristics.json")
     {
+        jsonPath = EditorUtility.OpenFilePanel("Выберите файл для импорта", "", "json");
+
         string jsonStrings = File.ReadAllText(jsonPath);
 
         var importData = JToken.Parse(jsonStrings);
@@ -88,6 +92,7 @@ public class SharingData : MonoBehaviour
             }
         }
 
-        reloadPanels.CharsChange(reloadPanels.tableName);
+        if (reloadPanels.GetComponent<Transform>().Find("Viewport").Find("Content").childCount != 0)
+            reloadPanels.CharsChange(reloadPanels.tableName);
     }
 }
