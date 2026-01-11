@@ -27,7 +27,10 @@ public class EditCharacteristic : MonoBehaviour
 
         editPage.transform.GetChild(1).Find("NameInput").GetComponent<TMP_InputField>().text = card.name;
         editPage.transform.GetChild(1).Find("DescriptionInput").GetComponent<TMP_InputField>().text = card.description;
-        editPage.transform.GetChild(1).Find("ModelPathInput").GetComponent<TMP_InputField>().text = card.modelPath;
+        var panel = editPage.transform.GetChild(1).Find("Model").gameObject.GetComponent<ImageOrModelPanel>();
+        panel.fileName = card.modelPath;
+        StartCoroutine(panel.FileSetToPanel());
+        editPage.transform.GetChild(1).Find("SelectImgButton").GetComponentInChildren<TMP_Text>().text = card.modelPath == "" ? "Выбрать картинку" : card.modelPath;
     }
 
     /// <summary>
@@ -59,7 +62,9 @@ public class EditCharacteristic : MonoBehaviour
 
             string name = editPage.transform.GetChild(1).Find("NameInput").GetComponent<TMP_InputField>().text;
             string description = editPage.transform.GetChild(1).Find("DescriptionInput").GetComponent<TMP_InputField>().text;
-            string modelPath = editPage.transform.GetChild(1).Find("ModelPathInput").GetComponent<TMP_InputField>().text;
+            string modelPath = editPage.transform.GetChild(1).Find("SelectImgButton").GetComponentInChildren<TMP_Text>().text;
+            if (modelPath == "Выбрать картинку")
+                modelPath = "";
 
             Card card = GetComponent<Card>();
 
