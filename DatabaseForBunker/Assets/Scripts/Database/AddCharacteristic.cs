@@ -33,7 +33,10 @@ public class AddCharacteristic : MonoBehaviour
         {
             DatabaseAdd();
         }
-        catch { }
+        catch 
+        {
+            Debug.LogError("Ошибка добавления записи в базу данных");
+        }
 
         CloseAddPage();
         LoadData loadData = addPage.GetComponent<Transform>().parent.parent.GetComponent<LoadData>();
@@ -53,7 +56,9 @@ public class AddCharacteristic : MonoBehaviour
 
             string name = addPage.transform.GetChild(1).Find("NameInput").GetComponent<TMP_InputField>().text;
             string description = addPage.transform.GetChild(1).Find("DescriptionInput").GetComponent<TMP_InputField>().text;
-            string modelPath = addPage.transform.GetChild(1).Find("ModelPathInput").GetComponent<TMP_InputField>().text;
+            string modelPath = addPage.transform.GetChild(1).Find("SelectImgButton").GetComponentInChildren<TMP_Text>().text;
+            if (modelPath == "Выбрать картинку")
+                modelPath = "";
             int deckId = gameObject.transform.parent.parent.parent.GetComponent<LoadData>().deckId;
 
             string query = $"insert into {tableName} (Name, Description, ModelPath, DeckTypeId, isLocal) values ('{name}', '{description}', '{modelPath}', {deckId}, 1)";

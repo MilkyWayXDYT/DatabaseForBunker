@@ -78,7 +78,12 @@ public class Card : MonoBehaviour
                 el.gameObject.GetComponent<TMP_Text>().text = name;
             if (el.name == "DescriptionText")
                 el.gameObject.GetComponent<TMP_Text>().text = description;
-            // todo добавить еще загрузку модели или картинки
+            if (el.name == "Model")
+            {
+                var panel = el.gameObject.GetComponent<ImageOrModelPanel>();
+                panel.fileName = modelPath;
+                StartCoroutine(panel.FileSetToPanel());
+            }
         }
     }
 }
