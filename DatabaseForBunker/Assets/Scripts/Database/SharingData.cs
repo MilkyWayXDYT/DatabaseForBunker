@@ -13,6 +13,10 @@ public class SharingData : MonoBehaviour
     public LoadData reloadPanels;
     private string[] tableName = { "Threat", "Profession", "Fact", "Age", "Disaster", "Hobby", "Phobia", "Health", "Bunker", "Luggage" };
 
+    /// <summary>
+    /// Экспорт данных в Json файл
+    /// </summary>
+    /// <param name="jsonPath">Путь файла</param>
     public void ExportData(string jsonPath = "C:\\Users\\User\\Desktop\\Characteristics.json")
     {
         jsonPath = StandaloneFileBrowser.SaveFilePanel("Выберите папку для экспорта", "", "Characteristics", "json");
@@ -53,7 +57,10 @@ public class SharingData : MonoBehaviour
         File.WriteAllText(jsonPath, json);
     }
     
-
+    /// <summary>
+    /// Импорт из Json файла
+    /// </summary>
+    /// <param name="jsonPath">Путь файла</param>
     public void ImportData(string jsonPath = "C:\\Users\\User\\Desktop\\Characteristics.json")
     {
         try

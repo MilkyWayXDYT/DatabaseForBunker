@@ -11,6 +11,10 @@ public class SelectFile : MonoBehaviour
 
     private string imageOrModelPath;
     private string fileName;
+
+    /// <summary>
+    /// Выбор картинки для характеристики
+    /// </summary>
     public void SelectImageOrModel()
     {
         try
@@ -37,6 +41,9 @@ public class SelectFile : MonoBehaviour
         StartCoroutine(panel.FileSetToPanel());
     }
 
+    /// <summary>
+    /// Перемещение файла из первоначального места в C://Users/User/AppData/LocalLow/DefaultCompany/DatabaseForBunker
+    /// </summary>
     public void MoveFile()
     {
         string newPath = Path.Combine(Application.persistentDataPath, fileName);

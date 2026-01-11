@@ -20,6 +20,9 @@ public class LoadData : MonoBehaviour
     public int deckId;
     private List<Card> chars;
 
+    /// <summary>
+    /// Очистка списка характеристик при открытии страницы
+    /// </summary>
     private void OnEnable()
     {
         for (int c = 0; c < content.transform.childCount; c++)

@@ -20,7 +20,7 @@ public class DeleteCharacteristic : MonoBehaviour
     /// Удаление карточки в БД
     /// </summary>
     /// <param name="id">Id удаляемой записи</param>
-    /// <param name="tableName"></param>
+    /// <param name="tableName">Название таблицы</param>
     private void DeleteInDatabase(int id, string tableName)
     {
         using (var connection = DBHelper.GetConnection())
@@ -34,5 +34,4 @@ public class DeleteCharacteristic : MonoBehaviour
             }
         }
     }
-    // todo удаление только с isLocal = 1 для пользователей и все для админов
 }

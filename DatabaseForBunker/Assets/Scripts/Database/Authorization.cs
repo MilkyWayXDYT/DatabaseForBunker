@@ -18,7 +18,10 @@ public class Authorization : MonoBehaviour
     public bool isAuth = false;
     private bool isHide = true;
 
-    public void Start()
+    /// <summary>
+    /// Проверка на авторизацию
+    /// </summary>
+    public void CheckAuth()
     {
         using (var connection = DBHelper.GetConnection())
         {
@@ -51,6 +54,9 @@ public class Authorization : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Авторизация
+    /// </summary>
     public void Auth()
     {
         using (var connection = DBHelper.GetConnection())
@@ -98,6 +104,9 @@ public class Authorization : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Скрытие пароля
+    /// </summary>
     public void HidePassword()
     {
         isHide = !isHide;

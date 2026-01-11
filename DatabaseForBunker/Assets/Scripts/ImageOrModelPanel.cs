@@ -14,6 +14,10 @@ public class ImageOrModelPanel : MonoBehaviour
     private TMP_Text fileNameButton;
     public string fileName;
 
+    /// <summary>
+    /// ”становка картинки в панели при открытии окна изменени€ или подробной информации
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator FileSetToPanel()
     {
         string defaultPath = Application.persistentDataPath;
@@ -54,6 +58,10 @@ public class ImageOrModelPanel : MonoBehaviour
         
     }
 
+
+    /// <summary>
+    /// —брос выбранной картинки
+    /// </summary>
     public void ResetImage()
     {
         if (transform.parent.parent.name == "AddAndEdit")

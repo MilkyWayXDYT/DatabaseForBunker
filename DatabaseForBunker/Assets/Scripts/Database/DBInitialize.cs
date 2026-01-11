@@ -23,7 +23,7 @@ public class DBInitialize : MonoBehaviour
             InsertDataInDB();
         }
 
-        auth.Start();
+        auth.CheckAuth();
     }
 
     /// <summary>
