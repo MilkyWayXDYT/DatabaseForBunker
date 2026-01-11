@@ -89,7 +89,8 @@ public class Card : MonoBehaviour
             {
                 var panel = el.gameObject.GetComponent<ImageOrModelPanel>();
                 panel.fileName = modelPath;
-                StartCoroutine(panel.FileSetToPanel());
+                if (deckId != 6)
+                    StartCoroutine(panel.FileSetToPanel());
             }
         }
     }

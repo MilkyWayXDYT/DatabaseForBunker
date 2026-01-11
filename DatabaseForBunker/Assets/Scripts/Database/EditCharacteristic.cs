@@ -27,9 +27,12 @@ public class EditCharacteristic : MonoBehaviour
 
         editPage.transform.GetChild(1).Find("NameInput").GetComponent<TMP_InputField>().text = card.name;
         editPage.transform.GetChild(1).Find("DescriptionInput").GetComponent<TMP_InputField>().text = card.description;
-        var panel = editPage.transform.GetChild(1).Find("Model").gameObject.GetComponent<ImageOrModelPanel>();
-        panel.fileName = card.modelPath;
-        StartCoroutine(panel.FileSetToPanel());
+        if (tableName == "Age")
+        {
+            var panel = editPage.transform.GetChild(1).Find("Model").gameObject.GetComponent<ImageOrModelPanel>();
+            panel.fileName = card.modelPath;
+            StartCoroutine(panel.FileSetToPanel());
+        }
         editPage.transform.GetChild(1).Find("SelectImgButton").GetComponentInChildren<TMP_Text>().text = card.modelPath == "" ? "Выбрать картинку" : card.modelPath;
     }
 
