@@ -20,16 +20,21 @@ public class LoadData : MonoBehaviour
     public int deckId;
     private List<Card> chars;
 
+    private void OnEnable()
+    {
+        for (int c = 0; c < content.transform.childCount; c++)
+        {
+            Destroy(content.transform.GetChild(c).gameObject);
+        }
+    }
+
     /// <summary>
     /// Функция для перезаполнения скорллера с карточками характеристик
     /// </summary>
     /// <param name="tableName"> Название таблицы для БД.</param>
     public void CharsChange(string tableName = "")
     {
-        for (int c = 0; c < content.transform.childCount; c++)
-        {
-            Destroy(content.transform.GetChild(c).gameObject);
-        }
+        OnEnable();
         charactPrefab.GetComponent<RectTransform>().anchorMax.Set(0, 0.5f);
         charactPrefab.GetComponent<RectTransform>().anchorMin.Set(0, 0.5f);
         if (tableName != "")

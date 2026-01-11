@@ -15,10 +15,10 @@ public class Authorization : MonoBehaviour
 
     public bool isAdmin = false;
 
-    private bool isAuth = false;
+    public bool isAuth = false;
     private bool isHide = true;
 
-    private void Start()
+    public void Start()
     {
         using (var connection = DBHelper.GetConnection())
         {
@@ -40,7 +40,7 @@ public class Authorization : MonoBehaviour
                         passwordInput.text = reader.GetString(1);
                         nameInput.enabled = !nameInput.enabled;
                         passwordInput.enabled = !passwordInput.enabled;
-                        isAdmin = reader.GetString(0) == "Admin";
+                        isAdmin = reader.GetString(2) == "Admin";
                     }
                 }
                 else // вход
@@ -81,6 +81,7 @@ public class Authorization : MonoBehaviour
             {
                 buttonText.text = "Войти";
                 query = $"update Users set Authorization = 0 where Login = '{nameInput.text}' and Password = '{passwordInput.text}'";
+                isAdmin = false;
             }
             else // вход
             {

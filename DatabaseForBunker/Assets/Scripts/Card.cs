@@ -6,6 +6,8 @@ public class Card : MonoBehaviour
 {
     [SerializeField]
     private GameObject descriptionObj;
+    [SerializeField]
+    private Authorization authPage;
 
     public bool isSelected = false;
 
@@ -21,6 +23,7 @@ public class Card : MonoBehaviour
     /// </summary>
     public void SelectCard()
     {
+        authPage = GetComponent<Transform>().parent.parent.parent.parent.parent.Find("AuthPage").GetComponent<Authorization>();
         if (isSelected)
         {
             DeselectCard();
@@ -39,7 +42,11 @@ public class Card : MonoBehaviour
         foreach (var el in elements)
         {
             if (el.name == "Buttons")
+            {
                 el.gameObject.SetActive(true);
+                el.GetChild(1).gameObject.SetActive(authPage.isAdmin);
+                el.GetChild(2).gameObject.SetActive(authPage.isAdmin);
+            }
             if (el.name == "Name")
                 el.gameObject.SetActive(false);
         }

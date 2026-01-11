@@ -5,6 +5,8 @@ using System.IO;
 
 public class DBInitialize : MonoBehaviour
 {
+    [SerializeField]
+    private Authorization auth;
     string dataPath;
 
     /// <summary>
@@ -20,6 +22,8 @@ public class DBInitialize : MonoBehaviour
             CreateTables();
             InsertDataInDB();
         }
+
+        auth.Start();
     }
 
     /// <summary>
