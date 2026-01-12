@@ -52,7 +52,7 @@ ExportedObj/
 *.svd
 *.pdb
 *.mdb
-*.meta
+#*.meta
 *.opendb
 *.VC.db
 

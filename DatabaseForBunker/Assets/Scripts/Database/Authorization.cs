@@ -103,6 +103,11 @@ public class Authorization : MonoBehaviour
         }
     }
 
+    public void Registration()
+    {
+
+    }
+
     /// <summary>
     /// Скрытие пароля
     /// </summary>
