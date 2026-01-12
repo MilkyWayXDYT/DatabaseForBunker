@@ -44,8 +44,17 @@ public class Card : MonoBehaviour
             if (el.name == "Buttons")
             {
                 el.gameObject.SetActive(true);
-                el.GetChild(1).gameObject.SetActive(authPage.isAdmin);
-                el.GetChild(2).gameObject.SetActive(authPage.isAdmin);
+                if (isLocal == 0)
+                {
+                    el.GetChild(1).gameObject.SetActive(authPage.isAdmin);
+                    el.GetChild(2).gameObject.SetActive(authPage.isAdmin);
+                }
+                else
+                {
+                    el.GetChild(1).gameObject.SetActive(true);
+                    el.GetChild(2).gameObject.SetActive(true);
+                }
+
             }
             if (el.name == "Name")
                 el.gameObject.SetActive(false);
