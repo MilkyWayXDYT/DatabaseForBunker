@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class AddCharacteristic : MonoBehaviour
 {
     private GameObject addPage;
+    private Authorization authPage;
 
     string tableName;
 
     private void Start()
     {
         addPage = GetComponent<Transform>().parent.parent.Find("AddAndEdit").gameObject;
+        authPage = GetComponent<Transform>().parent.parent.parent.parent.parent.Find("AuthPage").transform.GetComponent<Authorization>();
     }
 
     /// <summary>
@@ -61,7 +63,7 @@ public class AddCharacteristic : MonoBehaviour
                 modelPath = "";
             int deckId = gameObject.transform.parent.parent.parent.GetComponent<LoadData>().deckId;
 
-            string query = $"insert into {tableName} (Name, Description, ModelPath, DeckTypeId, isLocal) values ('{name}', '{description}', '{modelPath}', {deckId}, 1)";
+            string query = $"insert into {tableName} (Name, Description, ModelPath, DeckTypeId, isLocal, createdBy) values ('{name}', '{description}', '{modelPath}', {deckId}, 1, {authPage.userID})";
 
             using (var command = new SQLiteCommand(query, connection))
             {

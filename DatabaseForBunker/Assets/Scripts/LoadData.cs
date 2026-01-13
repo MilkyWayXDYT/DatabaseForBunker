@@ -66,6 +66,7 @@ public class LoadData : MonoBehaviour
             cardInf.modelPath = card.modelPath;
             cardInf.deckId = card.deckId;
             cardInf.isLocal = card.isLocal;
+            cardInf.createdBy = card.createdBy;
             creatingCard.transform.SetParent(content.transform, false);
 
             i++;
@@ -91,10 +92,12 @@ public class LoadData : MonoBehaviour
             connection.Open();
 
             string query;
+            if (tableName != "Age")
+                query = $"select mainT.ID, mainT.Name, mainT.Description, mainT.ModelPath, mainT.DeckTypeId, mainT.isLocal, U.Login from {tableName} mainT inner join Users U on mainT.createdBy = U.ID";
+            else
+                query = $"select mainT.ID, mainT.Name, mainT.DeckTypeId, mainT.isLocal, U.Login from {tableName} as mainT inner join Users U on mainT.createdBy = U.ID";
             if (isLocalToggle.isOn)
-                query = $"select * from {tableName} where isLocal = 1";
-            else 
-                query = $"select * from {tableName}";
+                query += " where isLocal = 1";
 
                 var command = new SQLiteCommand(query, connection);
             using (var reader = command.ExecuteReader())
@@ -111,11 +114,13 @@ public class LoadData : MonoBehaviour
                             deck.modelPath = reader.GetString(3);
                             deck.deckId = int.Parse(reader.GetValue(4).ToString());
                             deck.isLocal = int.Parse(reader.GetValue(5).ToString());
+                            deck.createdBy = reader.GetString(6);
                         }
                         else
                         {
                             deck.deckId = int.Parse(reader.GetValue(2).ToString());
                             deck.isLocal = int.Parse(reader.GetValue(3).ToString());
+                            deck.createdBy = reader.GetString(4);
                         }
 
                         chars.Add(deck);

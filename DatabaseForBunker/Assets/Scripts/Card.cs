@@ -17,6 +17,7 @@ public class Card : MonoBehaviour
     public string modelPath;
     public int deckId;
     public int isLocal;
+    public string createdBy;
 
     /// <summary>
     /// При нажатии на карту, считается, что она выбрана, если до нее была выбрана другая, то с той выбор сбрасывается
@@ -101,6 +102,8 @@ public class Card : MonoBehaviour
                 if (deckId != 6)
                     StartCoroutine(panel.FileSetToPanel());
             }
+            if (el.name == "CreatedBy")
+                el.gameObject.GetComponent<TMP_Text>().text = $"Создано: {(createdBy == "admin" ? "Система" : createdBy)}";
         }
     }
 }
