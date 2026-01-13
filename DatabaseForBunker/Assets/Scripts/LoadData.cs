@@ -95,7 +95,7 @@ public class LoadData : MonoBehaviour
             if (tableName != "Age")
                 query = $"select mainT.ID, mainT.Name, mainT.Description, mainT.ModelPath, mainT.DeckTypeId, mainT.isLocal, U.Login from {tableName} mainT inner join Users U on mainT.createdBy = U.ID";
             else
-                query = $"select mainT.ID, mainT.Name, mainT.DeckTypeId, mainT.isLocal, U.Login from {tableName} as mainT inner join Users U on mainT.createdBy = U.ID";
+                query = $"select mainT.ID, mainT.Value, mainT.DeckTypeId, mainT.isLocal, U.Login from {tableName} as mainT inner join Users U on mainT.createdBy = U.ID";
             if (isLocalToggle.isOn)
                 query += " where isLocal = 1";
 
